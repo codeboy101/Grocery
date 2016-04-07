@@ -1,0 +1,34 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'itemCss/items.css' %}">
+<html>
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<title>Grocery List</title>
+</head>
+<body>
+
+<div id="header">
+<strong><p align="center">Grocery Dashboard </p></strong>
+<hr>
+</div>
+
+<div id="contents">
+{% for item in items %}
+	<ul>
+	<li><p>{{ item }} : {{item.item_price}} </p></li>
+	<hr>
+	</ul>
+{% endfor %}
+</div>
+
+<div id="add">
+<a href="{% url 'addItem' %}"><span class="btn btn-info">Add Item</span></a>
+</div>
+
+<div id="remove">
+<a href="{%url 'removeItem' %}"><span class="btn btn-info">Remove Item</span></a>
+</div>
+
+</body>
+</html>

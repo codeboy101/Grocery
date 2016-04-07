@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<html>
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="{% static 'itemCss/removeItem.css' %}">
+<title>Remove Item</title>
+</head>
+<div id="header">
+<body>
+<h1 align="center">Remove Item</h1>
+</body>
+</div>
+
+<form action="{% url 'show_list' %}" method="post">
+{% csrf_token %}
+{% for item in items %}
+<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ item.id }}"/>
+<label for="choice{{ forloop.counter }}">{{ item }}</label>
+<hr>
+{% endfor %}
+<button type="submit" class="save btn btn-default">Remove</button>
+
+</form>
+</html>
