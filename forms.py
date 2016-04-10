@@ -1,17 +1,8 @@
 from django import forms
-from .models import List
+from .models import Register
 
-items = List.objects.order_by('item_name')
-choices = (items)
-
-class addForm(forms.ModelForm):
-
+class loginForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput())
 	class Meta:
-		model = List
-		fields = ('item_name','item_price',)
-
-class SimpleForm(forms.ModelForm):
-	
-	class Meta:
-		model = List
-		fields = ('item_name','item_price')
+		model = Register
+		fields = ('username','password',)
