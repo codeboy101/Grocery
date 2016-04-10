@@ -1,0 +1,15 @@
+{%load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Css/home.css' %}">
+<html>
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<title>Login</title>
+</head>
+<body>
+<div id="login">
+<form method="POST" class="post-form" name="user">{% csrf_token %}
+{{ form.as_p }}
+	<button type="submit" class="save btn btn-default">Create</button>
+</form>
+</div>
