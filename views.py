@@ -1,29 +1,18 @@
-from django.shortcuts import render , redirect
-from .models import List
-from .forms import addForm , SimpleForm
+from django.shortcuts import render ,redirect
+from .forms import loginForm
+from .models import Register
 
-def show_list(request):
-	items = List.objects.order_by('item_name')
-	return render(request,'grocery/items.html',{'items':items})
-
-def addItem(request):
+def home(request):
 	if request.method == "POST":
-		form = addForm(request.POST)
+		form = loginForm(request.POST)
 		if form.is_valid():
-			post = form.save(commit=False)
-			post.save()
-			return redirect('show_list')
+			form.save()
+			return redirect(greet)
 	else:
-		form = addForm()
-	return render(request,'grocery/addItem.html',{'form':form})
+		form = loginForm()	
+	return render(request,'validator/home.html',{'form':form})
 
-def removeItem(request,pk):
-	items = List.objects.order_by('item_name')
-	my_item = List.objects.get(pk=pk)
-	my_item.delete()
-	return render(request,'grocery/removeItem.html',{'items':items,})
-
-
-def removeItemW(request):
-	items = List.objects.order_by('item_name')
-	return render(request,'grocery/removeItem.html',{'items':items,})
+def greet(request):
+	users = Register.objects.all()
+	user_total = len(users)
+	return render(request,'validator/greet.html',{'user_total':user_total})
