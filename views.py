@@ -7,12 +7,11 @@ def home(request):
 		form = loginForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect(greet)
+			return redirect("greet")
 	else:
 		form = loginForm()	
 	return render(request,'validator/home.html',{'form':form})
 
-def greet(request):
-	users = Register.objects.all()
-	user_total = len(users)
-	return render(request,'validator/greet.html',{'user_total':user_total})
+def greet(request,pk):
+	user = Register.objects.get(pk=pk)
+	return render(request,'validator/greet.html',{'user':user})
